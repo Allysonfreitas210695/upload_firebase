@@ -1,10 +1,11 @@
-package com.example.aulafirebase
+package com.example.aulafirebase.activitys
 
 import android.os.Bundle
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import com.example.aulafirebase.R
 import com.example.aulafirebase.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth

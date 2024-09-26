@@ -3,9 +3,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="bottom_nav_background">#FFFFFF</color>
-    <color name="activeColor">#000000</color> <!-- Exemplo de cor ativa (vermelho) -->
-    <color name="inactiveColor">#BDBDBD</color> <!-- Exemplo de cor inativa (cinza) -->
+    <color name="bottom_nav_background">#ffb350</color>
+    <color name="activeColor">#3C3B3B</color>
+    <color name="inactiveColor">#E4E4E4</color>
 
 
 </resources>

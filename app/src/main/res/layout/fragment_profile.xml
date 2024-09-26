@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="#080000"
+    android:background="#EAE5E5"
     tools:context=".fragments.ProfileFragment">
 
     <!-- Imagem do perfil -->
@@ -30,7 +30,7 @@
         android:padding="16dp"
         android:layout_marginTop="10dp"
         android:text="Email"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="30sp" />
 
     <androidx.appcompat.widget.AppCompatButton

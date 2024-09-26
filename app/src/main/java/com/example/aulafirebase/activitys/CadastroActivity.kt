@@ -1,15 +1,10 @@
-package com.example.aulafirebase
+package com.example.aulafirebase.activitys
 
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.aulafirebase.databinding.ActivityCadastroBinding
-import com.example.aulafirebase.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
 
 class CadastroActivity : AppCompatActivity() {
 

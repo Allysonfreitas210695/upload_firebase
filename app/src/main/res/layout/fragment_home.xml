@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#080000"
+    android:background="#EAE5E5"
     android:padding="16dp"
-    tools:context=".UploadImagemActivity">
+    tools:context=".activitys.MainActivity">
 
     <ImageView
         android:id="@+id/imageSelecionada"
@@ -50,24 +50,24 @@
         app:layout_constraintTop_toBottomOf="@+id/imageSelecionada"
         app:srcCompat="@drawable/ic_camera_alt_24" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnUpload"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:backgroundTint="@color/black"
         android:text="Upload"
+        android:background="@drawable/btn_fundo_amarelo"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnGaleria" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnRecuperar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:backgroundTint="@color/black"
+        android:layout_width="167dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/btn_fundo_amarelo"
         android:text="Recuperar Imagem"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"

@@ -1,4 +1,4 @@
-package com.example.aulafirebase
+package com.example.aulafirebase.activitys
 
 import android.content.Intent
 import android.os.Bundle

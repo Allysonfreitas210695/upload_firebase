@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
-import com.example.aulafirebase.LoginActivity
+import com.example.aulafirebase.activitys.LoginActivity
 import com.example.aulafirebase.R
 import com.google.firebase.auth.FirebaseAuth
 
