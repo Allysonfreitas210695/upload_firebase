@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "746004491643",
+    "project_id": "projetofirebase-4adea",
+    "storage_bucket": "projetofirebase-4adea.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:746004491643:android:8acb7ef8e7ecdb947e61de",
+        "android_client_info": {
+          "package_name": "com.example.aulafirebase"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBn_nU5ydmZI-2h376f1OBcTIOEcGjIamA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
