@@ -3,7 +3,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="bottom_nav_background">#F59824</color>
+    <color name="bottom_nav_background">#000000</color>
     <color name="activeColor">#3C3B3B</color>
     <color name="inactiveColor">#E4E4E4</color>
 

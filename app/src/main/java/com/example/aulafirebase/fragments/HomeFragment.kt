@@ -1,26 +1,23 @@
 package com.example.aulafirebase.fragments
 
 import android.Manifest
-import android.app.Activity.RESULT_OK
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.aulafirebase.databinding.FragmentHomeBinding
-import com.example.aulafirebase.helpers.Permissao
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
-import java.io.ByteArrayInputStream
-import java.io.ByteArrayOutputStream
 
 class HomeFragment : Fragment() {
 
@@ -33,6 +30,8 @@ class HomeFragment : Fragment() {
     private val autenticacao = FirebaseAuth.getInstance()
 
     private val armazenamento = FirebaseStorage.getInstance()
+
+    private lateinit var requisitarPermissoesLauncher: ActivityResultLauncher<Array<String>>
 
     // ActivityResult para abrir a galeria e selecionar uma imagem
     private val abrirGaleria = registerForActivityResult(
@@ -47,44 +46,25 @@ class HomeFragment : Fragment() {
         }
     }
 
-    // abrir camera e tirar uma foto
+    // ActivityResult para abrir a câmera e capturar uma foto
     private val abrirCamera = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
         val imagemCapturada = result.data?.extras?.getParcelable<Bitmap>("data")
         if (imagemCapturada != null) {
             bitmapImage = imagemCapturada
-            binding.imageSelecionada.setImageBitmap( imagemCapturada )
+            binding.imageSelecionada.setImageBitmap(imagemCapturada)
             Toast.makeText(requireContext(), "Foto capturada", Toast.LENGTH_SHORT).show()
         } else {
             Toast.makeText(requireContext(), "Erro ao capturar a imagem", Toast.LENGTH_SHORT).show()
         }
     }
 
-    private val permissoes = listOf<String>(
+    // Lista de permissões necessárias
+    private val permissoes = listOf(
         Manifest.permission.CAMERA,
-        Manifest.permission.READ_EXTERNAL_STORAGE,
-        Manifest.permission.RECORD_AUDIO,
-        Manifest.permission.ACCESS_COARSE_LOCATION
+        Manifest.permission.READ_EXTERNAL_STORAGE
     )
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        Log.i("permissao_app", "requestCode: ${requestCode}")
-        
-        permissions.forEachIndexed { index, valor ->
-            Log.i("permissao_app", "permission: $index) ${valor}")
-        }
-
-        grantResults.forEachIndexed { index, valor ->
-            Log.i("permissao_app", "concedida: $index) ${valor}")
-        }
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -92,11 +72,18 @@ class HomeFragment : Fragment() {
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        Permissao.requisirarPermissoes(
-            requireActivity(),
-            permissoes,
-            100
-        )
+        // Registrar ActivityResultLauncher para permissões
+        requisitarPermissoesLauncher = registerForActivityResult(
+            ActivityResultContracts.RequestMultiplePermissions()
+        ) { permissoes ->
+            val todasPermissoesConcedidas = permissoes.values.all { it }
+            if (!todasPermissoesConcedidas) {
+                Toast.makeText(requireContext(), "Permissões negadas", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        // Solicitar permissões ao iniciar a view
+        requisitarPermissoesLauncher.launch(permissoes.toTypedArray())
 
         // Configurar botão para abrir a galeria
         binding.btnGaleria.setOnClickListener {
@@ -113,41 +100,35 @@ class HomeFragment : Fragment() {
             recuperarImagemFirebase()
         }
 
+        // Configurar botão para abrir a câmera com validação de permissão
         binding.btnCamera.setOnClickListener {
-            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            abrirCamera.launch(intent)
+            if (verificarPermissaoCamera()) {
+                abrirCamera()
+            } else {
+                requisitarPermissaoCamera()
+            }
         }
 
         return binding.root
     }
 
-    private fun uploadCamera() {
-        val idUser = autenticacao.currentUser?.uid
+    // Verificar se a permissão da câmera foi concedida
+    private fun verificarPermissaoCamera(): Boolean {
+        return requireContext()
+            .checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
+    }
 
-        val outputStream = ByteArrayOutputStream()
-
-        bitmapImage?.compress(
-            Bitmap.CompressFormat.JPEG,
-            100,
-            outputStream
+    // Requisitar permissão para usar a câmera
+    private fun requisitarPermissaoCamera() {
+        requisitarPermissoesLauncher.launch(
+            arrayOf(Manifest.permission.CAMERA)
         )
+    }
 
-        if (bitmapImage != null && idUser != null) {
-            armazenamento
-                .getReference("fotos")
-                .child(idUser)
-                .child("foto.jpg")
-                .putBytes( outputStream.toByteArray() )
-                .addOnSuccessListener { task ->
-                    Toast.makeText(requireContext(), "Sucesso ao fazer upload da imagem", Toast.LENGTH_SHORT).show()
-
-                    task.metadata?.reference?.downloadUrl?.addOnSuccessListener { uriFirebase ->
-                        Toast.makeText(requireContext(), uriFirebase.toString(), Toast.LENGTH_LONG).show()
-                    }
-                }.addOnFailureListener {
-                    Toast.makeText(requireContext(), "Erro ao fazer upload da imagem", Toast.LENGTH_SHORT).show()
-                }
-        }
+    // Abrir a câmera para capturar uma foto
+    private fun abrirCamera() {
+        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        abrirCamera.launch(intent)
     }
 
     private fun uploadGaleria() {

@@ -1,9 +1,22 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.AulaFirebase" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    <!-- Base application theme -->
+    <style name="Base.Theme.AulaFirebase" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Customize your light theme here -->
+        <!-- Cor da StatusBar (barra de status) -->
+        <item name="android:statusBarColor">#FFFFFF</item>
+        <!-- Cor dos ícones da StatusBar -->
+        <item name="android:windowLightStatusBar">true</item> <!-- ícones escuros -->
+        <!-- Cor da Navigation Bar (barra de navegação) -->
+        <item name="android:navigationBarColor">#FFFFFF</item>
     </style>
 
+    <!-- Tema geral da aplicação -->
     <style name="Theme.AulaFirebase" parent="Base.Theme.AulaFirebase" />
+
+    <!-- Tema escuro para a tela de login -->
+    <style name="Theme.AulaFirebase.Login" parent="Base.Theme.AulaFirebase">
+        <item name="android:statusBarColor">#000000</item>
+        <item name="android:windowLightStatusBar">false</item> <!-- ícones claros -->
+        <item name="android:navigationBarColor">#000000</item>
+    </style>
 </resources>
