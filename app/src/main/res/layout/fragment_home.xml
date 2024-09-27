@@ -4,88 +4,118 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EAE5E5"
+    android:background="#FFFFFF"
     android:padding="16dp"
     tools:context=".activitys.MainActivity">
 
-    <ImageView
-        android:id="@+id/imageSelecionada"
-        android:layout_width="400dp"
-        android:layout_height="160dp"
-        android:layout_marginTop="24dp"
-        android:background="@android:color/darker_gray"
-        android:contentDescription="Imagem selecionada"
-        android:scaleType="centerCrop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/padrao" />
+        app:layout_constraintBottom_toBottomOf="parent">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <ImageButton
-        android:id="@+id/btnGaleria"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:contentDescription="Botão para abrir galeria"
-        app:layout_constraintEnd_toStartOf="@+id/btnCamera"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageSelecionada"
-        app:srcCompat="@drawable/ic_insert_photo_24" />
+            <ImageView
+                android:id="@+id/imageSelecionada"
+                android:layout_width="0dp"
+                android:layout_height="180dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="32dp"
+                android:background="@android:color/darker_gray"
+                android:contentDescription="Imagem selecionada"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/padrao" />
 
-    <ImageButton
-        android:id="@+id/btnCamera"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:contentDescription="botão para abrir a câmera"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btnGaleria"
-        app:layout_constraintTop_toBottomOf="@+id/imageSelecionada"
-        app:srcCompat="@drawable/ic_camera_alt_24" />
+            <ImageButton
+                android:id="@+id/btnGaleria"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="Botão para abrir galeria"
+                app:layout_constraintEnd_toStartOf="@+id/btnCamera"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageSelecionada"
+                app:srcCompat="@drawable/ic_insert_photo_24" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnUpload"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Upload"
-        android:background="@drawable/btn_fundo_amarelo"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnGaleria" />
+            <ImageButton
+                android:id="@+id/btnCamera"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:contentDescription="botão para abrir a câmera"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/btnGaleria"
+                app:layout_constraintTop_toBottomOf="@+id/imageSelecionada"
+                app:srcCompat="@drawable/ic_camera_alt_24" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnRecuperar"
-        android:layout_width="167dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/btn_fundo_amarelo"
-        android:text="Recuperar Imagem"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnUpload" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnUpload"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/btn_fundo_preto"
+                android:drawableStart="@drawable/ic_upload_24"
+                android:drawablePadding="8dp"
+                android:padding="10dp"
+                android:text="Upload"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toStartOf="@+id/btnRecuperar"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnGaleria" />
 
-    <ImageView
-        android:id="@+id/imageRecuperada"
-        android:layout_width="400dp"
-        android:layout_height="160dp"
-        android:layout_marginTop="16dp"
-        android:background="@android:color/darker_gray"
-        android:contentDescription="Imagem recuperada"
-        android:scaleType="centerCrop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnRecuperar"
-        app:srcCompat="@drawable/padrao" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnRecuperar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/btn_fundo_preto"
+                android:drawableStart="@drawable/ic_download_24"
+                android:drawablePadding="8dp"
+                android:padding="10dp"
+                android:text="Recuperar Imagem"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/btnUpload"
+                app:layout_constraintTop_toBottomOf="@+id/btnCamera" />
+
+            <ImageView
+                android:id="@+id/imageRecuperada"
+                android:layout_width="0dp"
+                android:layout_height="180dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="32dp"
+                android:contentDescription="Imagem recuperada"
+                android:drawablePadding="8dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnUpload"
+                app:srcCompat="@drawable/padrao" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
